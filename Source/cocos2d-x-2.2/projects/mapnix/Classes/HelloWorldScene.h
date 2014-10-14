@@ -2,6 +2,9 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include <string>
+
+using namespace std;
 
 class HelloWorld : public cocos2d::CCLayer
 {
@@ -11,14 +14,14 @@ public:
 
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::CCScene* scene();
-    
     // a selector callback
     void menuCloseCallback(CCObject* pSender);
-    
+    void menuAddCallback(CCObject* pSender);
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
 
 	int runMap();
+    int renderMap(string path);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
