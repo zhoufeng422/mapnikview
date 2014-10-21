@@ -15,8 +15,10 @@
 #include <mapnik/expression.hpp>
 #include <mapnik/color_factory.hpp>
 #include <mapnik/image_util.hpp>
+#include <mapnik/load_map.hpp>
+#include <mapnik/config_error.hpp>
 
-
+#include <string>
 #include <iostream>
 
 
@@ -69,20 +71,15 @@ bool HelloWorld::init()
     pMenu->setPosition(CCPointZero);
     this->addChild(pMenu, 1);
 
-    /////////////////////////////
-    // 3. add your codes below...
 
-    // add a label shows "Hello World"
-    // create and initialize a label
-    
-    CCLabelTTF* pLabel = CCLabelTTF::create("Hello World", "Arial", 24);
-    
-    // position the label on the center of the screen
-    pLabel->setPosition(ccp(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - pLabel->getContentSize().height));
+	//添加一个按钮，【添加数据】
+	 CCMenuItemImage *pAddItem = CCMenuItemImage::create("Add.gif","Add.gif",this,menu_selector(HelloWorld::menuAddCallback));
+	 pAddItem->setPosition(ccp(pAddItem->getContentSize().width/2 , visibleSize.height-pAddItem->getContentSize().height/2));
 
-    // add the label as a child to this layer
-    this->addChild(pLabel, 1);
+    // create menu, it's an autorelease object
+    CCMenu* pAddMenu = CCMenu::create(pAddItem, NULL);
+    pAddMenu->setPosition(CCPointZero);
+    this->addChild(pAddMenu, 1);
 
 	int rtn = runMap();
 
@@ -103,6 +100,65 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
     exit(0);
 #endif
 #endif
+}
+
+void HelloWorld::menuAddCallback(CCObject* pSender)
+{
+	//加载shp数据
+
+	//加载渲染配置
+	renderMap("");
+	//显示
+}
+
+int HelloWorld::renderMap(string path)
+{
+	using namespace mapnik;// 使用 mapnik 命名空间
+
+	try {
+		std::cout << " running demo ... /n";
+		// 注册数据源插件
+		datasource_cache::instance().register_datasources("mapnik/input");
+        freetype_engine::register_font("mapnik/fonts/DejaVuSans.ttf");
+		std::vector<std::string> names = freetype_engine::face_names();
+		std::cout << "face names size:" << names.size() << "/n";
+		for (unsigned i = 0; i < names.size(); ++i)
+		{
+			std::cout << names[i] << "/n";
+		}
+		// 声明 Map 对象，包括绘制使用的设备大小，及投影信息
+		Map m(1024,1024,"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs");
+		// 加载 Map 配置文件
+		load_map(m,"Map.xml");
+		// 设置地图绘制地理范围
+		m.zoom_to_box(box2d<double>(12934400,4862620,12944200,4872400));
+		// 定义具体绘制的内存图片缓冲区
+		image_32 buf(m.width(),m.height());
+		// 使用 agg_renderer 渲染绘制
+		agg_renderer<image_32> ren(m,buf);
+		ren.apply();
+		// 保存到文件
+		save_to_file<image_data_32>(buf.data(),"demo256.png","png256");
+		//save_map(m,"map.xml",false);
+		std::cout << "One maps have been rendered using AGG in the current directory:/n"
+            "Have a look!/n";
+     }
+     catch ( const mapnik::config_error & ex )
+     {
+         std::cerr << "### Configuration error: " << ex.what() << std::endl;
+         return EXIT_FAILURE;
+     }
+     catch ( const std::exception & ex )
+     {
+         std::cerr << "### std::exception: " << ex.what() << std::endl;
+         return EXIT_FAILURE;
+     }
+     catch ( ... )
+     {
+         std::cerr << "### Unknown exception." << std::endl;
+         return EXIT_FAILURE;
+     }
+     return EXIT_SUCCESS;   
 }
 
 int HelloWorld::runMap()
