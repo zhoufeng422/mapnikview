@@ -16,6 +16,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     AppDelegate app;
     CCEGLView* eglView = CCEGLView::sharedOpenGLView();
     eglView->setViewName("mapnix");
-    eglView->setFrameSize(800, 600);
+    eglView->setFrameSize(480, 320);
     return CCApplication::sharedApplication()->run();
 }
