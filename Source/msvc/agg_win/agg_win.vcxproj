@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D9828D06-4A5A-4888-89F7-58FDECA0C0DB}</ProjectGuid>
+    <RootNamespace>agg_win</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..\..\bin</OutDir>
+    <IncludePath>..\..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>..\..\src;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\..\..\..\mapnik-v2.2.0\include\mapnik\agg;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\..\..\mapnik-v2.2.0\msvc\mapnik\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>agg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="agg_mxwin.cpp" />
+    <ClCompile Include="agg_platform_support.cpp" />
+    <ClCompile Include="agg_win32_bmp.cpp" />
+    <ClCompile Include="ctrl\agg_bezier_ctrl.cpp" />
+    <ClCompile Include="ctrl\agg_cbox_ctrl.cpp" />
+    <ClCompile Include="ctrl\agg_gamma_ctrl.cpp" />
+    <ClCompile Include="ctrl\agg_gamma_spline.cpp" />
+    <ClCompile Include="ctrl\agg_polygon_ctrl.cpp" />
+    <ClCompile Include="ctrl\agg_rbox_ctrl.cpp" />
+    <ClCompile Include="ctrl\agg_scale_ctrl.cpp" />
+    <ClCompile Include="ctrl\agg_slider_ctrl.cpp" />
+    <ClCompile Include="ctrl\agg_spline_ctrl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="agg_color_conv.h" />
+    <ClInclude Include="agg_color_conv_rgb16.h" />
+    <ClInclude Include="agg_color_conv_rgb8.h" />
+    <ClInclude Include="agg_platform_support.h" />
+    <ClInclude Include="agg_win32_bmp.h" />
+    <ClInclude Include="ctrl\agg_bezier_ctrl.h" />
+    <ClInclude Include="ctrl\agg_cbox_ctrl.h" />
+    <ClInclude Include="ctrl\agg_ctrl.h" />
+    <ClInclude Include="ctrl\agg_gamma_ctrl.h" />
+    <ClInclude Include="ctrl\agg_gamma_spline.h" />
+    <ClInclude Include="ctrl\agg_polygon_ctrl.h" />
+    <ClInclude Include="ctrl\agg_rbox_ctrl.h" />
+    <ClInclude Include="ctrl\agg_scale_ctrl.h" />
+    <ClInclude Include="ctrl\agg_slider_ctrl.h" />
+    <ClInclude Include="ctrl\agg_spline_ctrl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mapnix\mapnix.vcxproj">
+      <Project>{5c3b7096-7567-4d5d-b7e9-5e2bcb770603}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

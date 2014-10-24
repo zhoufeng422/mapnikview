@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mapnix", "mapnix.vcxproj", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mxwin", "..\mxwin\mxwin.vcxproj", "{31D5E90B-FDA2-41AB-A5F2-08427EB9637D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "agg_win", "..\agg_win\agg_win.vcxproj", "{D9828D06-4A5A-4888-89F7-58FDECA0C0DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +21,10 @@ Global
 		{31D5E90B-FDA2-41AB-A5F2-08427EB9637D}.Debug|Win32.Build.0 = Debug|Win32
 		{31D5E90B-FDA2-41AB-A5F2-08427EB9637D}.Release|Win32.ActiveCfg = Release|Win32
 		{31D5E90B-FDA2-41AB-A5F2-08427EB9637D}.Release|Win32.Build.0 = Release|Win32
+		{D9828D06-4A5A-4888-89F7-58FDECA0C0DB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D9828D06-4A5A-4888-89F7-58FDECA0C0DB}.Debug|Win32.Build.0 = Debug|Win32
+		{D9828D06-4A5A-4888-89F7-58FDECA0C0DB}.Release|Win32.ActiveCfg = Release|Win32
+		{D9828D06-4A5A-4888-89F7-58FDECA0C0DB}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
