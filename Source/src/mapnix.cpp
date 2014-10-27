@@ -21,6 +21,8 @@
 #include <mapnik/load_map.hpp>
 #include <mapnik/config_error.hpp>
 
+#include <agg_pixfmt_rgb.h>
+
 using namespace std;
 using namespace mapnik;// 使用 mapnik 命名空间
 
