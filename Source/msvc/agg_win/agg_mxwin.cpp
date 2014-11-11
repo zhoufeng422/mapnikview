@@ -29,8 +29,8 @@ public:
 		//============================================================ 
 		// 以下是mapnix代码
 		// 构造地图对象
-		void *map_ptr = load_map_file("mapconfig.xml",width,height);
-
+		void *map_ptr = load_map_file("D:\\GitHub\\mapnikview\\Source\\bin\\mapconfig.xml",width,height);
+		
 		// 构建绘图缓冲区
 		if(img_buf){
 			delete img_buf;
@@ -75,7 +75,7 @@ int agg_main(int argc, char* argv[])
     app.caption("AGG MX");
     
     if(app.init(500, 500, agg::window_resize)) {
-		int rc = register_info("E:\\ProSource\\MyProject\\mapnikview\\Source\\lib\\");
+		int rc = register_info("D:\\GitHub\\mapnikview\\Source\\lib\\");
 		if(rc != 0){
 			return -1;
 		}

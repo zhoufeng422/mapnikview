@@ -60,13 +60,13 @@ bool MapScene::init()
 
     // add a "close" icon to exit the progress. it's an autorelease object
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-                                        "CloseNormal.png",
-                                        "CloseSelected.png",
+                                        "menu/close_48.png",
+                                        "menu/closed_48.png",
                                         this,
                                         menu_selector(MapScene::menuCloseCallback));
     
 	pCloseItem->setPosition(ccp(origin.x + visibleSize.width - pCloseItem->getContentSize().width/2 ,
-                                origin.y + pCloseItem->getContentSize().height/2));
+                                visibleSize.height-pCloseItem->getContentSize().height/2));
 
     // create menu, it's an autorelease object
     CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
@@ -75,7 +75,7 @@ bool MapScene::init()
 
 
 	//添加一个按钮，【添加数据】
-	 CCMenuItemImage *pAddItem = CCMenuItemImage::create("Add.png","Add.png",this,menu_selector(MapScene::menuAddCallback));
+	 CCMenuItemImage *pAddItem = CCMenuItemImage::create("menu/add_48.png","menu/added_48.png",this,menu_selector(MapScene::menuAddCallback));
 	 pAddItem->setPosition(ccp(pAddItem->getContentSize().width/2 , visibleSize.height-pAddItem->getContentSize().height/2));
 
     // create menu, it's an autorelease object
@@ -84,15 +84,27 @@ bool MapScene::init()
     this->addChild(pAddMenu, 1);
 
 	//添加一个按钮，【放大】
-	 CCMenuItemImage *pZoomInItem = CCMenuItemImage::create("ZoomIn.png","ZoomIn.png",this,menu_selector(MapScene::menuZoomInCallback));
-	 pZoomInItem->setPosition(ccp(pZoomInItem->getContentSize().width*3/2 , visibleSize.height-pAddItem->getContentSize().height/2));
+	CCMenuItemImage *pZoomInItem = CCMenuItemImage::create("menu/zoomin_48.png","menu/zoomined_48.png",this,menu_selector(MapScene::menuZoomInCallback));
+	pZoomInItem->setPosition(ccp(pZoomInItem->getContentSize().width*3/2 , visibleSize.height-pZoomInItem->getContentSize().height/2));
 
-    // create menu, it's an autorelease object
     CCMenu* pZoomInMenu = CCMenu::create(pZoomInItem, NULL);
     pZoomInMenu->setPosition(CCPointZero);
     this->addChild(pZoomInMenu, 1);
-    
-    
+    //添加一个按钮，【缩小】
+	CCMenuItemImage *pZoomItem = CCMenuItemImage::create("menu/zoom_48.png","menu/zoomed_48.png",this,NULL);
+	pZoomItem->setPosition(ccp(pZoomItem->getContentSize().width*5/2 , visibleSize.height-pZoomItem->getContentSize().height/2));
+
+    // create menu, it's an autorelease object
+    CCMenu* pZoomMenu = CCMenu::create(pZoomItem, NULL);
+    pZoomMenu->setPosition(CCPointZero);
+    this->addChild(pZoomMenu, 1);
+    //添加一个按钮，【全景】
+	CCMenuItemImage *pFullItem = CCMenuItemImage::create("menu/full_48.png","menu/fulled_48.png",this,NULL);
+	pFullItem->setPosition(ccp(pFullItem->getContentSize().width*7/2 , visibleSize.height-pFullItem->getContentSize().height/2));
+    CCMenu* pFullMenu = CCMenu::create(pFullItem, NULL);
+    pFullMenu->setPosition(CCPointZero);
+    this->addChild(pFullMenu, 1);
+
     return true;
 }
 
